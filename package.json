@@ -13,6 +13,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines":{
+    "node":"14.15.4"
+  },
   "bugs": {
     "url": "https://github.com/canpolatt/cavalier-be/issues"
   },
