@@ -13,8 +13,8 @@
   },
   "author": "",
   "license": "ISC",
-  "engines":{
-    "node":"14.15.4"
+  "engines": {
+    "node": "14.15.4"
   },
   "bugs": {
     "url": "https://github.com/canpolatt/cavalier-be/issues"
@@ -22,9 +22,11 @@
   "homepage": "https://github.com/canpolatt/cavalier-be#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1"
   }
 }
