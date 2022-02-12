@@ -21,9 +21,9 @@ mongoose
 server.use("",userRoute);
 
 let port = process.env.PORT;
-if(process.env.PORT == null || process.env.PORT)
-  port = 3000;
-
+if(process.env.PORT == null || process.env.PORT == ""){
+  port = 5000;
+}
 server.listen(port, ()=>{
     console.log("Server is up 🚀");
 });
