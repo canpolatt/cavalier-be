@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
       { expiresIn: "3d" }
     );
 
-    const { password, createdAt, updatedAt, address, __v, ...others } =
+    const { password, createdAt, updatedAt, address, __v, _id, ...others } =
       user._doc;
     res.status(200).json({ ...others, accessToken });
   } catch (err) {
