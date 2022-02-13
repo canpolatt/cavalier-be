@@ -31,6 +31,31 @@ const updateProduct = async (req, res) => {
   }
 };
 
+//DELETE PRODUCT
+
+const deleteProduct = async (req,res)=>{
+    try{
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(200).json("Ürün Silindi.");
+    }catch(err){
+        res.status(500).json(err);
+    }
+};
+
+//GET PRODUCT
+
+// //GET PRODUCT
+
+const getProduct = async (req,res)=>{
+    try{
+        const product = await Product.findById(req.params.id);
+        res.status(200).json(product);
+    }catch(err){
+        res.status(500).json(err);
+    }
+};
+
+
 //GET ALL PRDOUCTS
 
 const getAllProducts = async (req, res) => {
@@ -58,4 +83,4 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-export { addProduct, getAllProducts, updateProduct };
+export { addProduct, getAllProducts, updateProduct, deleteProduct, getProduct };
