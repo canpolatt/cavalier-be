@@ -2,6 +2,18 @@ import User from "../models/User.js";
 import CryptoJS from "crypto-js";
 import jwt from "jsonwebtoken";
 
+// DATA TRANSFER OBJECTS
+
+const authDTO = (user,accessToken) => {
+  return {
+    name: user.name,
+    surname: user.surname,
+    email: user.email,
+    isAdmin: user.isAdmin,
+    accessToken: accessToken
+  }
+}
+
 // USER REGISTRATION
 
 const registerUser = async (req, res) => {
@@ -24,6 +36,7 @@ const registerUser = async (req, res) => {
 };
 
 // USER LOGIN
+
 const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({
@@ -49,11 +62,9 @@ const loginUser = async (req, res) => {
       { expiresIn: "3d" }
     );
 
-    const { password, createdAt, updatedAt, address, __v, _id, ...others } =
-      user._doc;
-    res.status(200).json({ ...others, accessToken });
+    res.status(200).json(authDTO(user._doc,accessToken));
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err,"Hata ! Mail adresi bulunamadı.");
   }
 };
 
