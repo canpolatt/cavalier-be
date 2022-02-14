@@ -1,0 +1,67 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "API Documentation in Node.js Using Swagger",
+      "description": "User Restful webservice application",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "basePath": "/",
+    "tags":[
+        {
+            "name":"Users",
+            "description":"API for users."
+        },
+        {
+            "name":"Products",
+            "description":"API for products."
+        }
+    ],
+    "produces":["application/json"],
+    "paths": {
+        "/api/products":{
+            "get":{
+                "tags": ["Products"],
+                "summary": "Get all products",
+                "responses": {
+                    "200":{
+                        "description": "ok",
+                        "schema":{
+                            "$ref":"#/definitions/User"
+                        }
+                    },
+                    "500":{
+                        "description":"server error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "User":{
+            "required":["name,surname,email,password"],
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "surname":{
+                    "type":"string"
+                },
+                "email":{
+                    "type":"string",
+                    "uniqueItems":true
+                },
+                "password":{
+                    "type":"string"
+                }
+            }
+        },
+        "Users":{
+            "type":"array",
+            "$ref":"#/definitions/User"
+        }
+    }
+}    
