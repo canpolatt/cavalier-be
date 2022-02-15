@@ -73,12 +73,12 @@ const router = express.Router();
  *         title: product title
  *         description: product description
  *         image: image link
- *         categories: product categories
- *         size: product size
- *         color: product color
+ *         categories: [product categories must be array] 
+ *         size: [product size must be array] 
+ *         color: [product color must be array] 
  *         price: 2000
  *         stock: 10
- *         inStock: true / false
+ *         inStock: true / false must be boolean
  *         brand: brand value
  *
  */
