@@ -82,46 +82,6 @@ const router = express.Router();
  *         brand: brand value
  *
  */
-
-/** 
- * @swagger
- * components:
- *   schemas:
- *     UpdateProduct:
- *       type: object    
- */
-
-
-/**
- * @swagger
- * /register:
- *   post:
- *     summary: Create a new user
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/RegisterUser'
- *     responses:
- *       200:
- *         description: The user was successfully created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/RegisterUser'
- *       201:
- *         description: The user was successfully created
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/RegisterUser'
- *       500:
- *         description: Some server error
- *     security: 
- * 
- */
  
 
  /**
