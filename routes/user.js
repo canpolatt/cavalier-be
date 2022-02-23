@@ -1,5 +1,5 @@
 import express from "express";
-import { updateUser, deleteUser, getAllUsers } from "../controllers/userController.js";
+import { updateUser, deleteUser, getAllUsers, getUser } from "../controllers/userController.js";
 import {
     verifyTokenAndAuthorization,
     verifyTokenAndAdmin
@@ -73,6 +73,7 @@ const router = express.Router();
  * 
  */
 
+// UPDATE USER
 router.put("/:id", verifyTokenAndAuthorization, updateUser);
 
 /**
@@ -99,8 +100,66 @@ router.put("/:id", verifyTokenAndAuthorization, updateUser);
  *        description: Yönetici izni bulunamadı !
  * 
  */
+
+// DELETE USER
 router.delete("/:id", verifyTokenAndAdmin, deleteUser);
 
-router.get("/",getAllUsers);
+
+/**
+ * @swagger
+ * /api/users/:
+ *  get:
+ *    summary: get all user (enter true if you want to see newest on top) .
+ *    tags: [Users]
+ *    parameters:
+ *      - in: query
+ *        name: new
+ *        schema:
+ *          type: string
+ *        required: false
+ *        description: Enter "true" or leave empty
+ *    responses:
+ *      200:   
+ *        description: Kullanıcılar başarıyla gösterildi !
+ *      400:
+ *        description: Bir şey ters gitti !
+ *      401:
+ *        description: Giriş yapılmadı !
+ *      403:
+ *        description: Yönetici izni bulunamadı !
+ * 
+ */
+
+// GET ALL USERS
+router.get("/",verifyTokenAndAdmin,getAllUsers);
+
+
+
+/**
+ * @swagger
+ * /api/users/find/{id}:
+ *  get:
+ *    summary: Get a user by id.
+ *    tags: [Users]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The user id 
+ *    responses:
+ *      200:   
+ *        description: Kullanıcı bulundu !
+ *      400:
+ *        description: Kullanıcı bulunamadı !
+ *      401:
+ *        description: Giriş yapılmadı !
+ *      403:
+ *        description: Yönetici izni bulunamadı !
+ * 
+ */
+// GET A USER
+router.get("/find/:id",verifyTokenAndAdmin,getUser);
 
 export default router;

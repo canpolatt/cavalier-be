@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
+  //console.log(req);
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
@@ -16,7 +17,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+    if (req.user.id === req.params.id || req.user.userType) {
       next();
     } else {
       res.status(403).json("Giriş yapmanız gerekli !");
@@ -26,7 +27,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.isAdmin === "ADMIN") {
+    if (req.user.userType === "ADMIN") {
       next();
     } else {
       res.status(403).json("Yönetici izni bulunamadı !");

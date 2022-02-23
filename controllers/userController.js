@@ -1,6 +1,16 @@
 import User from "../models/User.js";
 import CryptoJS from "crypto-js";
 
+
+const userDTO = (user) => {
+  return {
+    name: user.name,
+    surname: user.surname,
+    email: user.email,
+    userType: user.userType,
+  }
+}
+
 // UPDATE USER INFORMATION
 
 const updateUser = async (req, res) => {
@@ -53,4 +63,14 @@ const getAllUsers = async (req,res)=>{
 
 }
 
-export { updateUser, deleteUser, getAllUsers};
+// GET A USER
+const getUser = async (req,res)=>{
+  try{
+      const user = await User.findById(req.params.id);
+      res.status(200).json(userDTO(user));
+  }catch(err){
+      res.status(500).json(err);
+  }
+};
+
+export { updateUser, deleteUser, getAllUsers, getUser};

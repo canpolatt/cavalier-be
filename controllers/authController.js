@@ -9,7 +9,7 @@ const authDTO = (user,accessToken) => {
     name: user.name,
     surname: user.surname,
     email: user.email,
-    isAdmin: user.isAdmin,
+    userType: user.userType,
     accessToken: accessToken
   }
 }
@@ -56,7 +56,7 @@ const loginUser = async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: user._id,
-        isAdmin: user.isAdmin,
+        userType: user.userType,
       },
       process.env.AUTH_KEY,
       { expiresIn: "3d" }
