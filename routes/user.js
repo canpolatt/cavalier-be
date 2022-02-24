@@ -3,7 +3,7 @@ import { updateUser, deleteUser, getAllUsers, getUser } from "../controllers/use
 import {
     verifyTokenAndAuthorization,
     verifyTokenAndAdmin
-  } from "../verifyToken.js";
+ } from "../verifyToken.js";
 
 const router = express.Router();
 

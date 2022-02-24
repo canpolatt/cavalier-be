@@ -128,8 +128,15 @@ router.post("/", verifyTokenAndAdmin, addProduct);
  * @swagger
  * /api/products:
  *  get:
- *    summary: Gets all products.
+ *    summary: Gets all products (enter true if you want to see newest on top) .
  *    tags: [Products]
+ *    parameters:
+ *      - in: query
+ *        name: new
+ *        schema:
+ *          type: string
+ *        required: false
+ *        description: Enter "true" or leave empty
  *    responses:
  *      200:   
  *        description: Success

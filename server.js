@@ -5,6 +5,7 @@ import cors from "cors";
 import authRoute from "./routes/authentication.js";
 import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
+import orderRoute from "./routes/order.js";
 // import swaggerUI from "swagger-ui-express";
 // import swaggerDocument from "./swagger.json";
 import { createRequire } from "module";
@@ -62,6 +63,7 @@ mongoose
 server.use("", authRoute);
 server.use("/api/users", userRoute);
 server.use("/api/products", productRoute);
+server.use("/api/orders", orderRoute);
 
 let port = process.env.PORT;
 if (process.env.PORT == null || process.env.PORT == "") {
