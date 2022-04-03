@@ -6,6 +6,7 @@ import authRoute from "./routes/authentication.js";
 import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
 import orderRoute from "./routes/order.js";
+import categoryRoute from "./routes/category.js";
 // import swaggerUI from "swagger-ui-express";
 // import swaggerDocument from "./swagger.json";
 import { createRequire } from "module";
@@ -64,11 +65,13 @@ server.use("", authRoute);
 server.use("/api/users", userRoute);
 server.use("/api/products", productRoute);
 server.use("/api/orders", orderRoute);
+server.use("/api/categories", categoryRoute);
 
 let port = process.env.PORT;
 if (process.env.PORT == null || process.env.PORT == "") {
   port = 5000;
 }
+
 server.listen(port, () => {
   console.log("Server is up 🚀");
 });
