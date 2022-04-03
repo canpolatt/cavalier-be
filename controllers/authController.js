@@ -25,6 +25,7 @@ const registerUser = async (req, res) => {
       req.body.password,
       process.env.PASS_KEY
     ).toString(),
+    address: req.body.address ? req.body.address : {}
   });
 
   try {

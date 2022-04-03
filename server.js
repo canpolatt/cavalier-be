@@ -7,6 +7,8 @@ import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
 import orderRoute from "./routes/order.js";
 import categoryRoute from "./routes/category.js";
+import messageRoute from "./routes/messagebox.js";
+
 // import swaggerUI from "swagger-ui-express";
 // import swaggerDocument from "./swagger.json";
 import { createRequire } from "module";
@@ -66,6 +68,7 @@ server.use("/api/users", userRoute);
 server.use("/api/products", productRoute);
 server.use("/api/orders", orderRoute);
 server.use("/api/categories", categoryRoute);
+server.use("/api/messagebox", messageRoute);
 
 let port = process.env.PORT;
 if (process.env.PORT == null || process.env.PORT == "") {
