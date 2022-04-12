@@ -1,15 +1,23 @@
 import Order from "../models/Order.js";
+import jwt from "jsonwebtoken";
 
 
 //CREATE NEW ORDER
 
 const newOrder = async (req,res)=>{
-
+    const authHeader = req.headers.authorization
+    if (authHeader) {
+        const token = authHeader.split(" ")[1];
+        jwt.verify(token, process.env.AUTH_KEY, (err, user) => {
+          err && res.status(403).json("Geçersiz token !");
+          req.body.userId = user.id;
+        });
+    }
     const order = new Order(req.body);
     try{
         const savedOrder = await order.save();
         res.status(200).json(savedOrder);
-    }catch{
+    }catch(err){
         res.status(500).json(err);
     }
 
