@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 //CREATE NEW ORDER
 
 const newOrder = async (req,res)=>{
-    const authHeader = req.headers.authorization
+    const authHeader = req.headers.authorization;
     if (authHeader) {
         const token = authHeader.split(" ")[1];
         jwt.verify(token, process.env.AUTH_KEY, (err, user) => {
