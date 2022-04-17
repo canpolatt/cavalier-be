@@ -1,6 +1,6 @@
 import express from "express";
 import {verifyToken, verifyTokenAndAdmin,verifyTokenAndAuthorization} from "../verifyToken.js";
-import {newOrder, updateOrder, cancelOrder, findOrder, allOrders} from "../controllers/orderController.js";
+import {newOrder, updateOrder, cancelOrder, findOrder, allOrders, findOrderById} from "../controllers/orderController.js";
 const router = express.Router();
 
 
@@ -176,6 +176,28 @@ router.delete("/:id",verifyTokenAndAdmin, cancelOrder);
  * 
  */
 router.get("/find",verifyTokenAndAuthorization, findOrder);
+
+/**
+ * @swagger
+ * /api/orders/find/{id}:
+ *  get:
+ *    summary: Gets a order by id.
+ *    tags: [Orders]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The order id 
+ *    responses:
+ *      200:   
+ *        description: Order found successfully !
+ *      400:
+ *        description: Order not found !
+ * 
+ */
+router.get("/find/:id",verifyTokenAndAuthorization, findOrderById);
 
 /**
  * @swagger
