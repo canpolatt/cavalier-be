@@ -54,12 +54,13 @@ const cancelOrder = async (req, res) => {
 
 const findOrder = async (req, res) => {
   try {
-    const orders = await Order.find({ _id: req.user.id });
+    const orders = await Order.find({ userId: req.user.id });
     res.status(200).json(orders);
+    console.log(orders);
   } catch (err) {
     res.status(500).json(err);
   }
-  console.log(req);
+  
 };
 
 //GET ORDER BY ORDER ID
