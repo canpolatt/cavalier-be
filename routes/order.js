@@ -1,6 +1,6 @@
 import express from "express";
 import {verifyToken, verifyTokenAndAdmin,verifyTokenAndAuthorization} from "../verifyToken.js";
-import {newOrder, updateOrder, cancelOrder, findOrder, allOrders, findOrderById} from "../controllers/orderController.js";
+import {newOrder, updateOrder, cancelOrder, findOrder, allOrders, findOrderById, getIncome} from "../controllers/orderController.js";
 const router = express.Router();
 
 
@@ -67,6 +67,24 @@ const router = express.Router();
  *       example:
  *           attribute:value
  *
+ */
+
+/** 
+ * @swagger
+ * components:
+ *   schemas:
+ *     Income:
+ *       type: object
+ *       required:
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: order month.
+ *         total:
+ *           type: number
+ *           description: ortder number.
+ *       example:
+ *           attribute:value
  */
 
 
@@ -217,5 +235,24 @@ router.get("/find/:id",verifyTokenAndAuthorization, findOrderById);
  * 
  */
 router.get("/",verifyTokenAndAdmin, allOrders);
+
+/**
+ * @swagger
+ * /api/orders/income:
+ *  get:
+ *    summary: Gets income.
+ *    tags: [Orders] 
+ *    responses:
+ *      200:   
+ *        description: All orders listed successfully !
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: "#/components/schemas/Income"
+ *      400:
+ *        description: Orders not found !
+ * 
+ */
+router.get("/income",verifyTokenAndAdmin, getIncome);
 
 export default router;
