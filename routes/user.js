@@ -39,7 +39,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/users/:
  *  put:
  *    summary: Update a user by id.
  *    tags: [Users]
@@ -47,13 +47,6 @@ const router = express.Router();
  *     - application/json
  *    produces:
  *     - application/json
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: The user id 
  *    requestBody:
  *      content:
  *        application/json:
@@ -74,7 +67,7 @@ const router = express.Router();
  */
 
 // UPDATE USER
-router.put("/:id", verifyTokenAndAuthorization, updateUser);
+router.put("/", verifyTokenAndAuthorization, updateUser);
 
 /**
  * @swagger

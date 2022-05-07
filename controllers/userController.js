@@ -23,14 +23,14 @@ const updateUser = async (req, res) => {
 
     try {
       const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
+        req.user.id,
         {
           $set: req.body,
         },
         { new: true }
       );
 
-      res.status(200).json(updatedUser);
+      res.status(200).json("Bilgiler güncellendi");
     } catch (err) {
       res.status(500).json(err);
     }
