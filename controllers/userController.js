@@ -20,7 +20,6 @@ const updateUser = async (req, res) => {
         process.env.PASS_KEY
       ).toString();
     }
-
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.user.id,
@@ -29,8 +28,7 @@ const updateUser = async (req, res) => {
         },
         { new: true }
       );
-
-      res.status(200).json("Bilgiler güncellendi");
+      res.status(200).json(userDTO(req.body));
     } catch (err) {
       res.status(500).json(err);
     }
