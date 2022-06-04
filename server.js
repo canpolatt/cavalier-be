@@ -78,4 +78,3 @@ if (process.env.PORT == null || process.env.PORT == "") {
 server.listen(port, () => {
   console.log("Server is up 🚀");
 });
-
